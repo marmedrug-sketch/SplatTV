@@ -9,6 +9,7 @@
   const playLabel = document.querySelector("#play-label");
   const hlsUrl = config.hlsUrl?.trim();
   const youtubeId = config.youtubeVideoId?.trim();
+  const nativeHls = video.canPlayType("application/vnd.apple.mpegurl");
   let hls;
   let library;
   let timeout;
@@ -60,6 +61,11 @@
   hint.textContent = "";
   play.hidden = false;
 
+  if (hlsUrl && !nativeHls) {
+    // Load the library while the viewer sees the cover. Playback still starts on click.
+    loadLibrary().catch(() => {});
+  }
+
   play.addEventListener("click", async () => {
     if (!hlsUrl && /^[\w-]{11}$/.test(youtubeId)) {
       const frame = document.createElement("iframe");
@@ -86,15 +92,14 @@
         unavailable("Для этой страницы нужен HTTPS-адрес потока.");
         return;
       }
-      const native = video.canPlayType("application/vnd.apple.mpegurl");
-      const Hls = native ? null : await loadLibrary();
-      if (!native && !Hls?.isSupported()) {
+      const Hls = nativeHls ? null : await loadLibrary();
+      if (!nativeHls && !Hls?.isSupported()) {
         unavailable("В этом браузере недоступно воспроизведение HLS.");
         return;
       }
 
       timeout = setTimeout(() => unavailable("Проверьте, началась ли трансляция, и попробуйте снова."), 25000);
-      if (native) {
+      if (nativeHls) {
         video.src = source.href;
       } else {
         hls = new Hls({
