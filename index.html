@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fbf1e4">
+  <meta name="description" content="СПЛАТ ТВ — канал со смешанным контентом: от мультфильмов до Splatoon SFM-анимаций.">
+  <title>СПЛАТ ТВ — Прямой эфир</title>
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./stream-config.js"></script>
+  <script defer src="./player.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap bar">
+      <a class="brand" href="./"><img src="./assets/icon.svg" alt=""> СПЛАТ ТВ</a>
+      <nav aria-label="Навигация">
+        <a href="#live">Эфир</a>
+        <a href="#about">О канале</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="intro" aria-labelledby="title">
+      <p class="eyebrow"><span></span> ТЕЛЕКАНАЛ В ИНТЕРНЕТЕ</p>
+      <h1 id="title">СПЛАТ <em>ТВ</em><span class="period">.</span></h1>
+      <p class="tagline">Мультфильмы, Splatoon SFM и всё вперемешку.</p>
+    </section>
+    <section id="live" class="broadcast" aria-labelledby="live-title">
+      <div class="broadcast-head">
+        <h2 id="live-title">Прямой эфир</h2>
+        <p class="status" id="status" data-state="idle" role="status">Эфир не подключён</p>
+      </div>
+      <div class="screen" id="screen">
+        <video id="video" controls playsinline preload="none" aria-label="Прямой эфир СПЛАТ ТВ" hidden></video>
+        <div id="cover" class="cover">
+          <img class="channel-logo" src="./assets/logo.png" alt="Логотип СПЛАТ ТВ" width="1254" height="1254">
+          <button class="play" id="play" type="button" hidden><span aria-hidden="true">▶</span> <span id="play-label">Смотреть эфир</span></button>
+          <p id="hint">Здесь появится трансляция</p>
+        </div>
+      </div>
+      <div class="broadcast-foot"><span>СПЛАТ ТВ</span><span>ОНЛАЙН-ПЛЕЕР</span></div>
+      <noscript><p>Для просмотра эфира включите JavaScript.</p></noscript>
+    </section>
+    <section id="about" class="about" aria-labelledby="about-title">
+      <div class="about-copy">
+        <p class="eyebrow"><span></span> О КАНАЛЕ</p>
+        <h2 id="about-title">Что в эфире?</h2>
+        <p>Сплат ТВ — канал со смешанным контентом. В эфире можно увидеть всё от мультфильмов до Splatoon SFM-анимаций.</p>
+      </div>
+      <div class="genres"><span>Мультфильмы</span><span>Splatoon SFM</span></div>
+    </section>
+  </main>
+  <footer class="wrap footer"><span>СПЛАТ ТВ</span><a href="#live">К плееру ↑</a></footer>
+</body>
+</html>
